@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pong.UI;
 
 namespace Pong.Models.Abstracts
 {
@@ -14,27 +11,21 @@ namespace Pong.Models.Abstracts
         private int x;
         private int y;
 
-        protected int X
+        public int X
         {
             get { return this.x; }
             set
             {
-                if (IsValidPos(value))
-                {
-                    this.x = value;
-                }
+                this.x = value;
             }
         }
 
-        protected int Y
+        public int Y
         {
             get { return this.y; }
             set
             {
-                if (IsValidPos(value))
-                {
-                    this.y = value;
-                }
+                this.y = value;
             }
         }
 
@@ -42,23 +33,6 @@ namespace Pong.Models.Abstracts
         {
             this.X = x;
             this.Y = y;
-        }
-
-        /// <summary>
-        /// Validates x or y.
-        /// </summary>
-        /// <param name="pos">x or y</param>
-        /// <returns>true if can be set or exception</returns>
-        private bool IsValidPos(int pos)
-        {
-            //TODO: Fix magic num 40 to const in UI.Utility.Const.
-            //TODO: Add an other Method for y.
-            if (pos >= 0 && pos <= 40)
-            {
-                return true;
-            }
-
-            throw new ArgumentException("Invalid position!");
         }
 
         /// <summary>

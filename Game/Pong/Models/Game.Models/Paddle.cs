@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Pong.Models.Abstracts;
 using Pong.Models.Contracts;
+using Pong.UI;
 
 namespace Pong.Models.Game.Models
 {
@@ -16,6 +13,29 @@ namespace Pong.Models.Game.Models
     {   
         public Paddle(int x = 0, int y = 0) : base(x, y)
         {
+        }
+
+        public void UpdateY(int value)
+        {
+            if (IsValidY(this.Y + value))
+            {
+                this.Y += value;
+            }
+        }
+
+        /// <summary>
+        /// Validates y if is valid move.
+        /// </summary>
+        /// <param name="pos">y</param>
+        /// <returns>bool</returns>
+        private bool IsValidY(int pos)
+        {
+            if (pos >= 0 && pos <= Utility.PlaygoundHeight - Utility.PaddleHeight)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void Move()
