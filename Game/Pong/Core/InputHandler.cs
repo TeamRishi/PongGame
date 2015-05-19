@@ -1,4 +1,5 @@
 ﻿using System;
+using Pong.Models.Abstracts;
 
 namespace Pong.Core
 {
@@ -10,8 +11,8 @@ namespace Pong.Core
         /// <summary>
         /// Detects if "arrow up" or "arrow down" are pressed.
         /// </summary>
-        /// <returns>"Up", "Down" or null if nothing is pressed.</returns>
-        public static string PressedKey()
+        /// <returns>Direction</returns>
+        public static Direction PressedKey()
         {
             if (Console.KeyAvailable)
             {
@@ -19,16 +20,16 @@ namespace Pong.Core
 
                 if (key.Key == ConsoleKey.UpArrow)
                 {
-                    return "Up";
+                    return Direction.Up;
                 }
 
                 if (key.Key == ConsoleKey.DownArrow)
                 {
-                    return "Down";
+                    return Direction.Down;
                 }
             }
 
-            return null;
+            return Direction.Null;
         }
     }
 }

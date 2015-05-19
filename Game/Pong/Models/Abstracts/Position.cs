@@ -8,26 +8,8 @@ namespace Pong.Models.Abstracts
     /// </summary>
     abstract class Position
     {
-        private int x;
-        private int y;
-
-        public int X
-        {
-            get { return this.x; }
-            set
-            {
-                this.x = value;
-            }
-        }
-
-        public int Y
-        {
-            get { return this.y; }
-            set
-            {
-                this.y = value;
-            }
-        }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         protected Position(int x, int y)
         {
@@ -41,7 +23,7 @@ namespace Pong.Models.Abstracts
         /// <returns>String</returns>
         public override string ToString()
         {
-            return string.Format("({0}, {1}) - {2}", this.x, this.y, GetType().Name);
+            return string.Format("({0}, {1}) - {2}", this.X, this.Y, GetType().Name);
         }
     }
 }

@@ -8,20 +8,37 @@ namespace Pong.Models.Game.Models
     /// <summary>
     /// Game Paddle object.
     /// </summary>
-    //TODO: Update summary.
-    class Paddle : Position, IMoveable
-    {   
-        public Paddle(int x = 0, int y = 0) : base(x, y)
+    internal class Paddle : Position, IMoveable
+    {
+        public Paddle(int x = 0, int y = 0)
+            : base(x, y)
         {
         }
 
-        public void UpdateY(int value)
+        /// <summary>
+        /// Updates paddle position.
+        /// </summary>
+        /// <param name="value">Paddle speed</param>
+        /// <param name="direction">Move direction</param>
+        public void Update(int value, Direction direction)
         {
-            if (IsValidY(this.Y + value))
+            if (direction == Direction.Up)
             {
-                this.Y += value;
+                if (IsValidY(this.Y - value))
+                {
+                    this.Y--;
+                }
+            }
+
+            if (direction == Direction.Down)
+            {
+                if (IsValidY(this.Y + value))
+                {
+                    this.Y++;
+                }
             }
         }
+
 
         /// <summary>
         /// Validates y if is valid move.
@@ -30,17 +47,13 @@ namespace Pong.Models.Game.Models
         /// <returns>bool</returns>
         private bool IsValidY(int pos)
         {
-            if (pos >= 0 && pos <= Utility.PlaygoundHeight - Utility.PaddleHeight)
+            int fieldEnd = Utility.PlaygoundHeight - Utility.PaddleHeight;
+            if (pos >= 0 && pos <= fieldEnd)
             {
                 return true;
             }
 
             return false;
-        }
-
-        public void Move()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ColisionDetector.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\InputHandler.cs" />
+    <Compile Include="Models\Abstracts\Direction.cs" />
     <Compile Include="Models\Abstracts\Position.cs" />
     <Compile Include="Models\Contracts\IMoveable.cs" />
     <Compile Include="Models\Game.Models\Ball.cs" />
