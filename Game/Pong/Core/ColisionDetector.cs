@@ -26,9 +26,13 @@ namespace Pong.Core
             }
         }
 
-        public static int CheckLifeLoss(int lifes, Ball ball)
+        public static int CheckLifeLoss(int lifes, Ball ball, string player)
         {
-            if (ball.X == 0)
+            if (ball.X == 0 && player == "PlayerLeft")
+            {
+                lifes--;
+            }
+            else if (ball.X == 79 && player == "PlayerRight")
             {
                 lifes--;
             }

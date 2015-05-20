@@ -11,8 +11,10 @@ namespace Pong.Models.Abstracts
     /// </summary>
     enum Direction
     {
-        Up,
-        Down,
+        LeftPaddleUp,
+        LeftPaddleDown,
+        RightPaddleUp,
+        RightPaddleDown,
         UpLeft,
         UpRight,
         DownLeft,

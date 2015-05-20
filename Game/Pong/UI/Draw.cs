@@ -41,19 +41,34 @@ namespace Pong.UI
             Console.Write("Score: ");
         }
 
-        public static void DrawLifes(int lifes)
+        public static void DrawLifes(int LeftPaddlelifes, int RightPaddleLifes)
         {
-            Console.SetCursorPosition(Utility.PlaygoundWidth / 2, Utility.PlaygoundHeight - 1);
-            Console.Write("Remaining lifes: {0}", lifes);
+            Console.SetCursorPosition(25, Utility.PlaygoundHeight - 1);
+            Console.Write("Player Left: {0} : {1} Player Right", LeftPaddlelifes, RightPaddleLifes);
         }
 
-        public static void GameOver()
+        public static void GameOver(int LeftPaddleLifes, int RightPaddleLifes)
         {
             Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             string gameOver = "GAME OVER";
+            string LeftPlayerWinns = "Left Player  winns!";
+            string RightPlayerWinns = "Right Player  winns!";
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
                 Utility.PlaygoundHeight / 2);
             Console.WriteLine(gameOver);
+            if (LeftPaddleLifes > RightPaddleLifes)
+            {
+                Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - LeftPlayerWinns.Length / 2,
+                Utility.PlaygoundHeight / 2 + 1);
+                Console.WriteLine(LeftPlayerWinns);
+            }
+            if (LeftPaddleLifes < RightPaddleLifes)
+            {
+                Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - RightPlayerWinns.Length / 2,
+                Utility.PlaygoundHeight / 2 + 1);
+                Console.WriteLine(RightPlayerWinns);
+            }
         }
 
         public static void DrawDebug(Ball ball, Paddle paddle)

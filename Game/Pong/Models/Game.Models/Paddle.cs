@@ -22,7 +22,7 @@ namespace Pong.Models.Game.Models
         /// <param name="direction">Move direction</param>
         public void Update(int value, Direction direction)
         {
-            if (direction == Direction.Up)
+            if (direction == Direction.LeftPaddleUp || direction == Direction.RightPaddleUp)
             {
                 if (IsValidY(this.Y - value))
                 {
@@ -30,7 +30,7 @@ namespace Pong.Models.Game.Models
                 }
             }
 
-            if (direction == Direction.Down)
+            if (direction == Direction.LeftPaddleDown || direction == Direction.RightPaddleDown)
             {
                 if (IsValidY(this.Y + value))
                 {

@@ -51,6 +51,7 @@
     <Compile Include="Models\Game.Models\Paddle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Draw.cs" />
+    <Compile Include="UI\Sounds.cs" />
     <Compile Include="UI\Utility.cs" />
   </ItemGroup>
   <ItemGroup>

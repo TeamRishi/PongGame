@@ -16,16 +16,25 @@ namespace Pong.Core
         {
             if (Console.KeyAvailable)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                ConsoleKeyInfo key = Console.ReadKey(true);
 
-                if (key.Key == ConsoleKey.UpArrow)
+                if (key.Key == ConsoleKey.Q)
                 {
-                    return Direction.Up;
+                    return Direction.LeftPaddleUp;
                 }
 
-                if (key.Key == ConsoleKey.DownArrow)
+                if (key.Key == ConsoleKey.A)
                 {
-                    return Direction.Down;
+                    return Direction.LeftPaddleDown;
+                }
+                if (key.Key == ConsoleKey.P)
+                {
+                    return Direction.RightPaddleUp;
+                }
+
+                if (key.Key == ConsoleKey.L)
+                {
+                    return Direction.RightPaddleDown;
                 }
             }
 

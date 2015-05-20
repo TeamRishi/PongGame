@@ -10,31 +10,45 @@ namespace Pong.Core
         public static void Main()
         {
             Paddle leftPaddle = new Paddle(Utility.LeftPaddleX, Utility.LeftPaddleY);
+            Paddle rightPaddle = new Paddle(Utility.RightPaddleX,Utility.RightPaddleY);
             Ball gameBall = new Ball(Utility.BallX, Utility.BallY);
-            int lifes = Utility.Lifes;
+            int leftPaddlelifes = Utility.Lifes;
+            int rightPaddlelifes = Utility.Lifes;
+            Sounds.PlayingSounds("background");
 
-            while (lifes > 0)
+            while (leftPaddlelifes > 0 && rightPaddlelifes > 0)
             {
                 Utility.SetField();
-
                 Draw.Clear();
                 Draw.DrawPaddle(leftPaddle);
+                Draw.DrawPaddle(rightPaddle);
                 Draw.DrawBall(gameBall);
-                Draw.DrawLifes(lifes);
+                Draw.DrawLifes(leftPaddlelifes, rightPaddlelifes);
                 Draw.DrawDebug(gameBall, leftPaddle);
 
                 Direction pressedKey = InputHandler.PressedKey();
-                if (pressedKey != Direction.Null)
-                {
-                    leftPaddle.Update(Utility.PaddleSpeed, pressedKey);
-                }
 
+                switch (pressedKey)
+                {
+                    case Direction.LeftPaddleUp:
+                    case Direction.LeftPaddleDown:
+                        leftPaddle.Update(Utility.PaddleSpeed, pressedKey);
+                        break;
+                    case Direction.RightPaddleUp:
+                    case Direction.RightPaddleDown:
+                        rightPaddle.Update(Utility.PaddleSpeed, pressedKey);
+                        break;
+                }
+               
                 gameBall.Update(Utility.BallSpeed, gameBall.Direction);
                 ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
-                lifes = ColisionDetector.CheckLifeLoss(lifes, gameBall);
+                ColisionDetector.CheckPaddleColision(rightPaddle, gameBall);
+                leftPaddlelifes = ColisionDetector.CheckLifeLoss(leftPaddlelifes, gameBall, "PlayerLeft");
+                rightPaddlelifes = ColisionDetector.CheckLifeLoss(rightPaddlelifes, gameBall, "PlayerRight");
             }
 
-            Draw.GameOver();
+            Draw.GameOver(leftPaddlelifes,rightPaddlelifes);
+            Sounds.PlayingSounds("gameover");
         }
     }
 }
