@@ -25,3 +25,9 @@ C:\Users\X201\Desktop\Project - Copy\PongGame\Game\Pong\obj\Debug\Pong.csprojRes
 C:\Users\X201\Desktop\project\trunk\Game\Pong\bin\Debug\Pong.exe.config
 C:\Users\X201\Desktop\project\trunk\Game\Pong\obj\Debug\Pong.exe
 C:\Users\X201\Desktop\project\trunk\Game\Pong\obj\Debug\Pong.pdb
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\bin\Debug\Pong.exe.config
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\obj\Debug\Pong.exe
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\obj\Debug\Pong.pdb
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\bin\Debug\Pong.exe
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\bin\Debug\Pong.pdb
+C:\Users\Killo0o-PD\Desktop\SoftUni\Teamwork Projects\PongGame\Game\Pong\obj\Debug\Pong.csprojResolveAssemblyReference.cache
