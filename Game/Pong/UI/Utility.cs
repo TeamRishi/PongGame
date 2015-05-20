@@ -18,7 +18,7 @@ namespace Pong.UI
         public const char PaddleChar = '|';
         public const int LeftPaddleX = 3;
         public const int LeftPaddleY = 12;
-        public const int BallX = 40;
+        public const int BallX = 42;
         public const int BallY = 18;
         
         /// <summary>

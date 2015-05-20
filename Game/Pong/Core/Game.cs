@@ -11,16 +11,16 @@ namespace Pong.Core
         {
             Paddle leftPaddle = new Paddle(Utility.LeftPaddleX, Utility.LeftPaddleY);
             Ball gameBall = new Ball(Utility.BallX, Utility.BallY);
-            int lives = Utility.Lifes;
+            int lifes = Utility.Lifes;
 
-            while (lives > 0)
+            while (lifes > 0)
             {
                 Utility.SetField();
 
                 Draw.Clear();
-                //Draw.DrawScore();
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawBall(gameBall);
+                Draw.DrawLifes(lifes);
                 Draw.DrawDebug(gameBall, leftPaddle);
 
                 Direction pressedKey = InputHandler.PressedKey();
@@ -30,12 +30,11 @@ namespace Pong.Core
                 }
 
                 gameBall.Update(Utility.BallSpeed, gameBall.Direction);
-                ColisionDetector.CheckLeftPaddleColisions(leftPaddle, gameBall);
-
-                // TODO: Add in ColitionDetection lives loss.
+                ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
+                lifes = ColisionDetector.CheckLifeLoss(lifes, gameBall);
             }
 
-            // TODO: Add GameOver event in UI.
+            Draw.GameOver();
         }
     }
 }

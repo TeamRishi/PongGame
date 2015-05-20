@@ -14,16 +14,26 @@ namespace Pong.Core
     class ColisionDetector
     {
         /// <summary>
-        /// Detects collision events between the leftPaddle and the ball.
+        /// Detects collision events between the Paddle and the Ball.
         /// </summary>
-        public static void CheckLeftPaddleColisions(Paddle leftPaddle, Ball ball)
+        public static void CheckPaddleColision(Paddle paddle, Ball ball)
         {
-            if (leftPaddle.X == ball.X && 
-                ball.Y >= leftPaddle.Y && 
-                ball.Y <= leftPaddle.Y + Utility.PaddleHeight)
+            if (paddle.X == ball.X &&
+                ball.Y >= paddle.Y &&
+                ball.Y <= paddle.Y + Utility.PaddleHeight)
             {
                 ball.Collision();
             }
+        }
+
+        public static int CheckLifeLoss(int lifes, Ball ball)
+        {
+            if (ball.X == 0)
+            {
+                lifes--;
+            }
+
+            return lifes;
         }
     }
 }

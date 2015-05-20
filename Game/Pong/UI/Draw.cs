@@ -9,7 +9,7 @@ namespace Pong.UI
         {
             Console.Clear();
         }
-        
+
         public static void DrawPaddle(Paddle paddle)
         {
             for (int i = 0; i < Utility.PaddleHeight; i++)
@@ -41,9 +41,24 @@ namespace Pong.UI
             Console.Write("Score: ");
         }
 
+        public static void DrawLifes(int lifes)
+        {
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2, Utility.PlaygoundHeight - 1);
+            Console.Write("Remaining lifes: {0}", lifes);
+        }
+
+        public static void GameOver()
+        {
+            Clear();
+            string gameOver = "GAME OVER";
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
+                Utility.PlaygoundHeight / 2);
+            Console.WriteLine(gameOver);
+        }
+
         public static void DrawDebug(Ball ball, Paddle paddle)
         {
-            Console.SetCursorPosition(10, Utility.PlaygoundHeight - 1);
+            Console.SetCursorPosition(Utility.PaddleHeight, Utility.PlaygoundHeight - 2);
             Console.Write(ball.Direction + " " + paddle + " " + ball);
         }
     }
