@@ -3,7 +3,10 @@ using Pong.Models.Game.Models;
 
 namespace Pong.UI
 {
-    internal class Draw
+    /// <summary>
+    /// Holds all the drawing.
+    /// </summary>
+    class Draw
     {
         public static void Clear()
         {
@@ -41,51 +44,38 @@ namespace Pong.UI
             Console.Write("Score: ");
         }
 
-        public static void DrawLife(int LeftPaddlelifes)
+        public static void DrawLifes(int playerOneLifes)
         {
             Console.SetCursorPosition(25, Utility.PlaygoundHeight - 1);
-            Console.Write("Player Left: {0}", LeftPaddlelifes);
+            Console.Write("Player Left: {0}", playerOneLifes);
         }
-        public static void DrawLifes(int LeftPaddlelifes, int RightPaddleLifes)
+        public static void DrawLifes(int playerOneLifes, int playerTwoLifes)
         {
             Console.SetCursorPosition(25, Utility.PlaygoundHeight - 1);
-            Console.Write("Player Left: {0} : {1} Player Right", LeftPaddlelifes, RightPaddleLifes);
+            Console.Write("Player Left: {0} : {1} Player Right", playerOneLifes, playerTwoLifes);
         }
 
-        public static void GameOverSingle()
+        public static void GameOver()
         {
             Clear();
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
             string gameOver = "GAME OVER";
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
                 Utility.PlaygoundHeight / 2);
             Console.WriteLine(gameOver);
         }
-        public static void GameOver(int LeftPaddleLifes, int RightPaddleLifes)
+        public static void GameOver(Player winner)
         {
             Clear();
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.White;
             string gameOver = "GAME OVER";
-            string LeftPlayerWinns = "Left Player  winns!";
-            string RightPlayerWinns = "Right Player  winns!";
-            Console.SetCursorPosition(Utility.PlaygoundWidth/2 - gameOver.Length/2,
-                Utility.PlaygoundHeight/2);
+            string theWinner = string.Format("The winner is {0}", winner.Name);
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
+                Utility.PlaygoundHeight / 2);
             Console.WriteLine(gameOver);
-            if (LeftPaddleLifes > RightPaddleLifes)
-            {
-                Console.SetCursorPosition(Utility.PlaygoundWidth/2 - LeftPlayerWinns.Length/2,
-                    Utility.PlaygoundHeight/2 + 1);
-                Console.WriteLine(LeftPlayerWinns);
-            }
-            if (LeftPaddleLifes < RightPaddleLifes)
-            {
-                Console.SetCursorPosition(Utility.PlaygoundWidth/2 - RightPlayerWinns.Length/2,
-                    Utility.PlaygoundHeight/2 + 1);
-                Console.WriteLine(RightPlayerWinns);
-            }
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - theWinner.Length / 2,
+                Utility.PlaygoundHeight / 2 + 1);
+            Console.WriteLine(theWinner);
         }
+
 
         public static void DrawDebug(Ball ball, Paddle paddle)
         {
@@ -98,23 +88,16 @@ namespace Pong.UI
 
             Utility.SetField();
             Clear();
-            string SinglePlayer = "1.Single Player.";
-            string TwoPlayers = "2.Two Players.";
-            string GameSettings = "3.Game Settings->";
-            Console.SetCursorPosition(Utility.SinglePlayerWeight, Utility.SinglePlayerHeight);
-            Console.Write(SinglePlayer);
-            Console.WriteLine();
-            Console.SetCursorPosition(Utility.TwoPlayersWeight, Utility.TwoPlayersHeight);
-            Console.Write(TwoPlayers);
-            Console.WriteLine();
-            Console.SetCursorPosition(Utility.GameSettingsWeight, Utility.GameSettingsHeight);
-            Console.Write(GameSettings);
+            string[] text =
+            {
+                "1.Single Player", "2.Two Players", "3.Game Settings", "Please type your choice:"
+            };
 
-        }
-
-        internal static void DrawLifes(int leftPaddlelifes)
-        {
-            throw new NotImplementedException();
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - text[i].Length / 2, Utility.PlaygoundHeight / 2 + i - text.Length);
+                Console.WriteLine(text[i]);
+            }
         }
     }
 }

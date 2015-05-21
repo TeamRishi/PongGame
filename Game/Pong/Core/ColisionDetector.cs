@@ -27,34 +27,15 @@ namespace Pong.Core
             }
         }
 
-        public static int CheckLifeLoss(int lifes, Ball ball, string player)
+        public static int CheckLifeLoss(int lifes, Ball ball, Paddle paddle)
         {
-            if (ball.X == 0 && player == "PlayerLeft")
+            if (ball.X == paddle.LifeZone)
             {
                 lifes--;
-                ///<summary>
-                ///Added beep effect 
-                Thread beep = new Thread(Console.Beep);
-                beep.Start();
-                ///</summary>
-
-            }
-            else if (ball.X == 79 && player == "PlayerRight")
-            {
-                lifes--;
-                ///<summary>
-                ///Added beep effect 
-                Thread beep = new Thread(Console.Beep);
-                beep.Start();
-                ///</summary>
+                Sounds.Beep();
             }
 
             return lifes;
-        }
-
-        internal static int CheckLifeLoss(int leftPaddlelifes, Ball gameBall)
-        {
-            throw new NotImplementedException();
         }
     }
 }

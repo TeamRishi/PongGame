@@ -7,85 +7,110 @@ namespace Pong.Core
 {
     internal class Game
     {
+        /// <summary>
+        /// Singleplayer mode.
+        /// </summary>
+        private static void SinglePlayer()
+        {
+            Paddle leftPaddle = new Paddle(Utility.LeftPaddleX, Utility.LeftPaddleY, Utility.LeftPaddleX);
+            Ball gameBall = new Ball(Utility.BallX, Utility.BallY);
+            Player playerOne = new Player(Utility.Lifes);
+
+            while (playerOne.Lifes > 0)
+            {
+                Utility.SetField();
+
+                Draw.Clear();
+                Draw.DrawPaddle(leftPaddle);
+                Draw.DrawBall(gameBall);
+                Draw.DrawLifes(playerOne.Lifes);
+
+                Direction pressedKey = InputHandler.PressedKey();
+                switch (pressedKey)
+                {
+                    case Direction.LeftPaddleUp:
+                        leftPaddle.Update(Utility.PaddleSpeed, Direction.Up);
+                        break;
+                    case Direction.LeftPaddleDown:
+                        leftPaddle.Update(Utility.PaddleSpeed, Direction.Down);
+                        break;
+                }
+
+                gameBall.Update(Utility.BallSpeed, gameBall.Direction);
+
+                ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
+                playerOne.Lifes = ColisionDetector.CheckLifeLoss(playerOne.Lifes, gameBall, leftPaddle);
+            }
+
+            Draw.GameOver();
+        }
+
+        /// <summary>
+        /// Multiplayer mode.
+        /// </summary>
+        private static void Mutiplayer()
+        {
+            Paddle leftPaddle = new Paddle(Utility.LeftPaddleX, Utility.LeftPaddleY, Utility.LeftPaddleX);
+            Paddle rightPaddle = new Paddle(Utility.RightPaddleX, Utility.RightPaddleY, Utility.RightPaddleX);
+            Player playerOne = new Player(Utility.Lifes, "Left Player");
+            Player playerTwo = new Player(Utility.Lifes, "Right Player");
+            Ball gameBall = new Ball(Utility.BallX, Utility.BallY);
+
+            while (playerOne.Lifes > 0 && playerTwo.Lifes > 0)
+            {
+                Utility.SetField();
+
+                Draw.Clear();
+                Draw.DrawPaddle(leftPaddle);
+                Draw.DrawPaddle(rightPaddle);
+                Draw.DrawBall(gameBall);
+                Draw.DrawLifes(playerOne.Lifes, playerTwo.Lifes);
+
+                Direction pressedKey = InputHandler.PressedKey();
+                switch (pressedKey)
+                {
+                    case Direction.LeftPaddleUp: 
+                        leftPaddle.Update(Utility.PaddleSpeed, Direction.Up);
+                        break;
+                    case Direction.LeftPaddleDown:
+                        leftPaddle.Update(Utility.PaddleSpeed, Direction.Down);
+                        break;
+                    case Direction.RightPaddleUp:
+                        rightPaddle.Update(Utility.PaddleSpeed, Direction.Up);
+                        break;
+                    case Direction.RightPaddleDown:
+                        rightPaddle.Update(Utility.PaddleSpeed, Direction.Down);
+                        break;
+                }
+
+                gameBall.Update(Utility.BallSpeed, gameBall.Direction);
+
+                ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
+                ColisionDetector.CheckPaddleColision(rightPaddle, gameBall);
+                playerOne.Lifes = ColisionDetector.CheckLifeLoss(playerOne.Lifes, gameBall, leftPaddle);
+                playerTwo.Lifes = ColisionDetector.CheckLifeLoss(playerTwo.Lifes, gameBall, rightPaddle);
+            }
+
+            Player winner = Utility.GetWinner(playerOne, playerTwo);
+            Draw.GameOver(winner);
+        }
+
         public static void Main()
         {
-            Paddle leftPaddle = new Paddle(Utility.LeftPaddleX, Utility.LeftPaddleY);
-            Paddle rightPaddle = new Paddle(Utility.RightPaddleX, Utility.RightPaddleY);
-            Ball gameBall = new Ball(Utility.BallX, Utility.BallY);
-            int leftPaddlelifes = Utility.Lifes;
-            int rightPaddlelifes = Utility.Lifes;
-            //Sounds.PlayingSounds("background");
+            Sounds.Background();
             Draw.StartupMenu();
-            int choice = int.Parse(Console.ReadLine());
-            while (!(choice == 1 || choice == 2 || choice == 3))
+            MenuOption option = InputHandler.GameMode();
+            if (option == MenuOption.Singleplayer)
             {
-                choice = int.Parse(Console.ReadLine());
-
+                SinglePlayer();
             }
-            if (choice == 1)
+
+            if (option == MenuOption.Mutiplayer)
             {
-                while (leftPaddlelifes > 0)
-                {
-                    Utility.SetField();
-                    Draw.Clear();
-                    Draw.DrawPaddle(leftPaddle);
-                    Draw.DrawBall(gameBall);
-                    Draw.DrawLife(leftPaddlelifes);
-                    Draw.DrawDebug(gameBall, leftPaddle);
-
-                    Direction pressedKey = InputHandler.PressedKey();
-
-                    switch (pressedKey)
-                    {
-                        case Direction.LeftPaddleUp:
-                        case Direction.LeftPaddleDown:
-                            leftPaddle.Update(Utility.PaddleSpeed, pressedKey);
-                            break;
-                    }
-
-                    gameBall.Update(Utility.BallSpeed, gameBall.Direction);
-                    ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
-                    leftPaddlelifes = ColisionDetector.CheckLifeLoss(leftPaddlelifes, gameBall, "PlayerLeft");
-                }
-                Draw.GameOverSingle();
+                Mutiplayer();
             }
-            else if (choice == 2)
-            {
-                while (leftPaddlelifes > 0 && rightPaddlelifes > 0)
-                {
-                    Utility.SetField();
-                    Draw.Clear();
-                    Draw.DrawPaddle(leftPaddle);
-                    Draw.DrawPaddle(rightPaddle);
-                    Draw.DrawBall(gameBall);
-                    Draw.DrawLifes(leftPaddlelifes, rightPaddlelifes);
-                    Draw.DrawDebug(gameBall, leftPaddle);
 
-                    Direction pressedKey = InputHandler.PressedKey();
-
-                    switch (pressedKey)
-                    {
-                        case Direction.LeftPaddleUp:
-                        case Direction.LeftPaddleDown:
-                            leftPaddle.Update(Utility.PaddleSpeed, pressedKey);
-                            break;
-                        case Direction.RightPaddleUp:
-                        case Direction.RightPaddleDown:
-                            rightPaddle.Update(Utility.PaddleSpeed, pressedKey);
-                            break;
-                    }
-
-                    gameBall.Update(Utility.BallSpeed, gameBall.Direction);
-                    ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
-                    ColisionDetector.CheckPaddleColision(rightPaddle, gameBall);
-                    leftPaddlelifes = ColisionDetector.CheckLifeLoss(leftPaddlelifes, gameBall, "PlayerLeft");
-                    rightPaddlelifes = ColisionDetector.CheckLifeLoss(rightPaddlelifes, gameBall, "PlayerRight");
-                }
-
-                Draw.GameOver(leftPaddlelifes, rightPaddlelifes);
-            }
+            Sounds.GameOver();
         }
-            //Sounds.PlayingSounds("gameover");
-        }
+    }
 }
-

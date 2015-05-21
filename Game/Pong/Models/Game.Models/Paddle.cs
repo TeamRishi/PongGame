@@ -8,11 +8,14 @@ namespace Pong.Models.Game.Models
     /// <summary>
     /// Game Paddle object.
     /// </summary>
-    internal class Paddle : Position, IMoveable
+    class Paddle : Position, IMoveable
     {
-        public Paddle(int x = 0, int y = 0)
+        public int LifeZone { get; set; }
+
+        public Paddle(int x, int y, int lifeZone)
             : base(x, y)
         {
+            this.LifeZone = lifeZone;
         }
 
         /// <summary>
@@ -22,7 +25,7 @@ namespace Pong.Models.Game.Models
         /// <param name="direction">Move direction</param>
         public void Update(int value, Direction direction)
         {
-            if (direction == Direction.LeftPaddleUp || direction == Direction.RightPaddleUp)
+            if (direction == Direction.Up)
             {
                 if (IsValidY(this.Y - value))
                 {
@@ -30,7 +33,7 @@ namespace Pong.Models.Game.Models
                 }
             }
 
-            if (direction == Direction.LeftPaddleDown || direction == Direction.RightPaddleDown)
+            if (direction == Direction.Down)
             {
                 if (IsValidY(this.Y + value))
                 {
@@ -38,7 +41,6 @@ namespace Pong.Models.Game.Models
                 }
             }
         }
-
 
         /// <summary>
         /// Validates y if is valid move.

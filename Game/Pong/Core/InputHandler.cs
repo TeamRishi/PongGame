@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Pong.Models.Abstracts;
+using Pong.UI;
 
 namespace Pong.Core
 {
@@ -9,7 +11,7 @@ namespace Pong.Core
     class InputHandler
     {
         /// <summary>
-        /// Detects if "arrow up" or "arrow down" are pressed.
+        /// Detects if movement keys are pressed.
         /// </summary>
         /// <returns>Direction</returns>
         public static Direction PressedKey()
@@ -39,6 +41,29 @@ namespace Pong.Core
             }
 
             return Direction.Null;
+        }
+
+        /// <summary>
+        /// Game menu.
+        /// </summary>
+        /// <returns>Selected MenuOption</returns>
+        public static MenuOption GameMode()
+        {
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2, Utility.PlaygoundHeight / 2);
+            int choice = int.Parse(Console.ReadLine());
+            while (!(choice == 1 || choice == 2 || choice == 3))
+            {
+                choice = int.Parse(Console.ReadLine());
+            }
+
+            switch (choice)
+            {
+                case 1: return MenuOption.Singleplayer;
+                case 2: return MenuOption.Mutiplayer;
+                case 3: return MenuOption.Settings;
+            }
+
+            return MenuOption.Null;
         }
     }
 }

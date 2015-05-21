@@ -15,6 +15,8 @@ namespace Pong.Models.Abstracts
         LeftPaddleDown,
         RightPaddleUp,
         RightPaddleDown,
+        Up,
+        Down,
         UpLeft,
         UpRight,
         DownLeft,
