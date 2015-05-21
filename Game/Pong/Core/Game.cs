@@ -71,6 +71,7 @@ namespace Pong.Core
                 Console.Clear();
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawPaddle(rightPaddle);
+
                 Draw.DrawBall(gameBall);
                 Draw.DrawLifes(playerOne.Lifes, playerTwo.Lifes);
 

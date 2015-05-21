@@ -31,16 +31,16 @@ namespace Pong.Core
                         Utility.bgc = ConsoleColor.DarkRed;
                         break;
                     case 1:
-                        Utility.bgc = ConsoleColor.DarkGray;
+                        Utility.bgc = ConsoleColor.DarkCyan;
                         break;
                     case 2:
-                        Utility.bgc = ConsoleColor.DarkMagenta;
+                        Utility.bgc = ConsoleColor.Red;
                         break;
                     case 3:
-                        Utility.bgc = ConsoleColor.DarkYellow;
+                        Utility.bgc = ConsoleColor.Cyan;
                         break;
                     case 4:
-                        Utility.bgc = ConsoleColor.Yellow;
+                        Utility.bgc = ConsoleColor.DarkMagenta;
                         break;
                 }
                 ball.Collision();

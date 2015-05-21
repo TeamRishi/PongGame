@@ -17,6 +17,7 @@ namespace Pong.UI
         {
             for (int i = 0; i < Utility.PaddleHeight; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.SetCursorPosition(paddle.X, paddle.Y + i);
                 Console.Write(Utility.PaddleChar);
             }
@@ -27,7 +28,9 @@ namespace Pong.UI
             try
             {
                 Console.SetCursorPosition(ball.X, ball.Y);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.Write(Utility.BallChar);
+                Console.ResetColor();
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -40,6 +43,7 @@ namespace Pong.UI
         // TODO: Implement score and fix here!
         public static void DrawScore()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, Utility.PlaygoundHeight - 1);
             Console.Write("Score: ");
         }
@@ -47,17 +51,23 @@ namespace Pong.UI
         public static void DrawLifes(int playerOneLifes)
         {
             Console.SetCursorPosition(25, Utility.PlaygoundHeight - 1);
+            Console.BackgroundColor = Utility.bgc;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Player Left: {0}", playerOneLifes);
         }
         public static void DrawLifes(int playerOneLifes, int playerTwoLifes)
         {
             Console.SetCursorPosition(25, Utility.PlaygoundHeight - 1);
+            Console.BackgroundColor = Utility.bgc;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Player Left: {0} : {1} Player Right", playerOneLifes, playerTwoLifes);
         }
 
         public static void GameOver()
         {
             Clear();
+            Console.BackgroundColor = Utility.bgc;
+            Console.ForegroundColor = ConsoleColor.White;
             string gameOver = "GAME OVER";
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
                 Utility.PlaygoundHeight / 2);
@@ -66,6 +76,8 @@ namespace Pong.UI
         public static void GameOver(Player winner)
         {
             Clear();
+            Console.BackgroundColor = Utility.bgc;
+            Console.ForegroundColor = ConsoleColor.White;
             string gameOver = "GAME OVER";
             string theWinner = string.Format("The winner is {0}", winner.Name);
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
@@ -88,6 +100,9 @@ namespace Pong.UI
 
             Utility.SetField();
             Clear();
+            Console.BackgroundColor = Utility.bgc;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
             string[] text =
             {
                 "1.Single Player", "2.Two Players", "3.Game Settings","4.Exit", "Please type your choice:"
