@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using System.Net.Mime;
 using Pong.Models.Abstracts;
 using Pong.Models.Game.Models;
 using Pong.UI;
@@ -112,7 +114,10 @@ namespace Pong.Core
                 {
                     Mutiplayer();
                 }
-
+                if (option == MenuOption.Exit)
+                {
+                    Environment.Exit(0);
+                }
                 Sounds.GameOver();
 
             }

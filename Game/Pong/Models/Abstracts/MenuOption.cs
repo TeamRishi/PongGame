@@ -14,6 +14,7 @@ namespace Pong.Models.Abstracts
         Singleplayer,
         Mutiplayer,
         Settings,
+        Exit,
         Null
     }
 }

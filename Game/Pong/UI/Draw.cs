@@ -90,7 +90,7 @@ namespace Pong.UI
             Clear();
             string[] text =
             {
-                "1.Single Player", "2.Two Players", "3.Game Settings", "Please type your choice:"
+                "1.Single Player", "2.Two Players", "3.Game Settings","4.Exit", "Please type your choice:"
             };
 
             for (int i = 0; i < text.Length; i++)

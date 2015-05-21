@@ -51,7 +51,7 @@ namespace Pong.Core
         {
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2, Utility.PlaygoundHeight / 2);
             int choice = int.Parse(Console.ReadLine());
-            while (!(choice == 1 || choice == 2 || choice == 3))
+            while (!(choice == 1 || choice == 2 || choice == 3 || choice==4))
             {
                 choice = int.Parse(Console.ReadLine());
             }
@@ -61,6 +61,7 @@ namespace Pong.Core
                 case 1: return MenuOption.Singleplayer;
                 case 2: return MenuOption.Mutiplayer;
                 case 3: return MenuOption.Settings;
+                case 4: return MenuOption.Exit;
             }
 
             return MenuOption.Null;
