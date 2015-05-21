@@ -97,20 +97,26 @@ namespace Pong.Core
 
         public static void Main()
         {
-            Sounds.Background();
-            Draw.StartupMenu();
-            MenuOption option = InputHandler.GameMode();
-            if (option == MenuOption.Singleplayer)
-            {
-                SinglePlayer();
-            }
 
-            if (option == MenuOption.Mutiplayer)
+            while (true)
             {
-                Mutiplayer();
-            }
+                Sounds.Background();
+                Draw.StartupMenu();
+                MenuOption option = InputHandler.GameMode();
+                if (option == MenuOption.Singleplayer)
+                {
+                    SinglePlayer();
+                }
 
-            Sounds.GameOver();
+                if (option == MenuOption.Mutiplayer)
+                {
+                    Mutiplayer();
+                }
+
+                Sounds.GameOver();
+
+            }
+            
         }
     }
 }
