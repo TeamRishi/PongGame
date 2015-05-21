@@ -21,8 +21,9 @@ namespace Pong.Core
             while (playerOne.Lifes > 0)
             {
                 Utility.SetField();
-
-                Draw.Clear();
+                
+                Console.BackgroundColor = Utility.bgc;
+                Console.Clear();
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawBall(gameBall);
                 Draw.DrawLifes(playerOne.Lifes);
@@ -37,14 +38,18 @@ namespace Pong.Core
                         leftPaddle.Update(Utility.PaddleSpeed, Direction.Down);
                         break;
                 }
+                
 
                 gameBall.Update(Utility.BallSpeed, gameBall.Direction);
 
                 ColisionDetector.CheckPaddleColision(leftPaddle, gameBall);
                 playerOne.Lifes = ColisionDetector.CheckLifeLoss(playerOne.Lifes, gameBall, leftPaddle);
+
+
             }
 
             Draw.GameOver();
+            
         }
 
         /// <summary>
@@ -62,7 +67,8 @@ namespace Pong.Core
             {
                 Utility.SetField();
 
-                Draw.Clear();
+                Console.BackgroundColor = Utility.bgc;
+                Console.Clear();
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawPaddle(rightPaddle);
                 Draw.DrawBall(gameBall);
@@ -102,6 +108,7 @@ namespace Pong.Core
 
             while (true)
             {
+
                 Sounds.Background();
                 Draw.StartupMenu();
                 MenuOption option = InputHandler.GameMode();

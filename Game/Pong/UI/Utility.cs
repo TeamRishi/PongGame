@@ -26,7 +26,7 @@ namespace Pong.UI
         public const int RightPaddleY = LeftPaddleY;
         public const int BallX = 42;
         public const int BallY = 18;
-
+        public static ConsoleColor bgc = ConsoleColor.DarkGreen;
         /// <summary>
         /// Sets all console settings.
         /// </summary>
@@ -53,5 +53,7 @@ namespace Pong.UI
 
             return two;
         }
+
+       
     }
 }

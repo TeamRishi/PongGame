@@ -23,8 +23,28 @@ namespace Pong.Core
                 ball.Y >= paddle.Y &&
                 ball.Y <= paddle.Y + Utility.PaddleHeight)
             {
+                Random rnd = new Random();
+
+                switch (rnd.Next(0, 5))
+                {
+                        case 0:
+                        Utility.bgc = ConsoleColor.DarkRed;
+                        break;
+                    case 1:
+                        Utility.bgc = ConsoleColor.DarkGray;
+                        break;
+                    case 2:
+                        Utility.bgc = ConsoleColor.DarkMagenta;
+                        break;
+                    case 3:
+                        Utility.bgc = ConsoleColor.DarkYellow;
+                        break;
+                    case 4:
+                        Utility.bgc = ConsoleColor.Yellow;
+                        break;
+                }
                 ball.Collision();
-            }
+           }
         }
 
         public static int CheckLifeLoss(int lifes, Ball ball, Paddle paddle)
@@ -37,5 +57,6 @@ namespace Pong.Core
 
             return lifes;
         }
+       
     }
 }
