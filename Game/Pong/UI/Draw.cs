@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using Pong.Models.Game.Models;
 
 namespace Pong.UI
@@ -68,21 +70,15 @@ namespace Pong.UI
             Clear();
             Console.BackgroundColor = Utility.bgc;
             Console.ForegroundColor = ConsoleColor.White;
-            string gameOver = "GAME OVER";
-            Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
-                Utility.PlaygoundHeight / 2);
-            Console.WriteLine(gameOver);
+            PrintGameOver();
         }
         public static void GameOver(Player winner)
         {
             Clear();
             Console.BackgroundColor = Utility.bgc;
             Console.ForegroundColor = ConsoleColor.White;
-            string gameOver = "GAME OVER";
+            PrintGameOver();
             string theWinner = string.Format("The winner is {0}", winner.Name);
-            Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - gameOver.Length / 2,
-                Utility.PlaygoundHeight / 2);
-            Console.WriteLine(gameOver);
             Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - theWinner.Length / 2,
                 Utility.PlaygoundHeight / 2 + 1);
             Console.WriteLine(theWinner);
@@ -103,6 +99,8 @@ namespace Pong.UI
             Console.BackgroundColor = Utility.bgc;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
+            GameName();
+            Credits();
             string[] text =
             {
                 "1.Single Player", "2.Two Players", "3.Game Settings","4.Exit", "Please type your choice:"
@@ -112,6 +110,47 @@ namespace Pong.UI
             {
                 Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - text[i].Length / 2, Utility.PlaygoundHeight / 2 + i - text.Length);
                 Console.WriteLine(text[i]);
+            }
+        }
+
+        public static void GameName()
+        {
+
+            using (StreamReader source = new StreamReader(@"Textures/GameName.txt"))
+            {
+                string line = source.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine(line);
+                    line = source.ReadLine();
+                }
+            }
+                
+        }
+
+        public static void Credits()
+        {
+            using (StreamReader source = new StreamReader(@"Textures/Credits.txt"))
+            {
+                string line = source.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine(line);
+                    line = source.ReadLine();
+                }
+            }
+        }
+
+        public static void PrintGameOver()
+        {
+            using (StreamReader source = new StreamReader(@"Textures/GameOver.txt"))
+            {
+                string line = source.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine(line);
+                    line = source.ReadLine();
+                }
             }
         }
     }
