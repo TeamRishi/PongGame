@@ -15,6 +15,7 @@ namespace Pong.Models.Game.Models
         public Ball(int x = 0, int y = 0)
             : base(x, y)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Random rng = new Random();
             int rngDirection = rng.Next(1, 5);
             switch (rngDirection)
