@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using Pong.Core;
 using Pong.Models.Game.Models;
 
 namespace Pong.UI
@@ -91,9 +92,8 @@ namespace Pong.UI
             Console.Write(ball.Direction + " " + paddle + " " + ball);
         }
 
-        public static void StartupMenu()
+        public static void MenuBackground()
         {
-
             Utility.SetField();
             Clear();
             Console.BackgroundColor = Utility.bgc;
@@ -101,16 +101,84 @@ namespace Pong.UI
             Console.ForegroundColor = ConsoleColor.White;
             GameName();
             Credits();
+        }
+        public static void StartupMenu()
+        {
+
+            MenuBackground();
             string[] text =
             {
-                "1.Single Player", "2.Two Players", "3.Game Settings","4.Exit", "Please type your choice:"
+                "1.Single Player", "2.Two Players", "3.Game Settings", "4.Exit", "Please type your choice:"
             };
 
             for (int i = 0; i < text.Length; i++)
             {
-                Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - text[i].Length / 2, Utility.PlaygoundHeight / 2 + i - text.Length);
+                Console.SetCursorPosition(Utility.PlaygoundWidth/2 - text[i].Length/2,
+                    Utility.PlaygoundHeight/2 + i - text.Length);
                 Console.WriteLine(text[i]);
             }
+        }
+        public static void StartUpSettings()
+        {
+            Clear();
+            MenuBackground();
+        string[] GameStartUpSettings =
+            {
+                "1.GameSpeed", "2.Lifes", "3.Background color change","4.Return to start menu"
+            };
+            for (int i = 0; i < GameStartUpSettings.Length; i++)
+            {
+                Console.SetCursorPosition(Utility.PlaygoundWidth / 2 - GameStartUpSettings[i].Length / 2,
+                    Utility.PlaygoundHeight / 2 + i - GameStartUpSettings.Length);
+                Console.WriteLine(GameStartUpSettings[i]);
+            }
+            Console.SetCursorPosition(40,Utility.PlaygoundHeight/2);
+            int choice = int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1: GameSpeed();
+                    break;
+                case 2: GameLifes();
+                    break;
+                case 3: BackgroundChange();
+                    break;
+                case 4: Game.Main();
+                    break;
+            }
+        }
+
+        public static int GameSpeed()
+        {
+            Clear();
+            MenuBackground();
+            string SetSpeed = "Set game speed (0 - 5):";
+            Console.SetCursorPosition(28,Utility.PlaygoundHeight/2-3);
+            Console.WriteLine(SetSpeed);
+            Console.SetCursorPosition(28+SetSpeed.Length/2,Utility.PlaygoundHeight/2-2);
+            int choice =int.Parse(Console.ReadLine());
+            return choice;
+        }
+        public static int GameLifes()
+        {
+            Clear();
+            MenuBackground();
+            string SetLifes = "Set game lifes (0 - 100):";
+            Console.SetCursorPosition(28, Utility.PlaygoundHeight / 2-3);
+            Console.WriteLine(SetLifes);
+            Console.SetCursorPosition(28 + SetLifes.Length / 2, Utility.PlaygoundHeight / 2 -2);
+            int choice = int.Parse(Console.ReadLine());
+            return choice;
+        }
+        public static string BackgroundChange()
+        {
+            Clear();
+            MenuBackground();
+            string BackgroundColor = "Set game background color (White,Black,Red,Green,Blue,Yellow):";
+            Console.SetCursorPosition(10,Utility.PlaygoundHeight/2-3);
+            Console.WriteLine(BackgroundColor);
+            Console.SetCursorPosition(Utility.PlaygoundWidth / 2-3, Utility.PlaygoundHeight / 2-2);
+            string choice =Console.ReadLine();
+            return choice;
         }
 
         public static void GameName()
@@ -127,7 +195,6 @@ namespace Pong.UI
             }
                 
         }
-
         public static void Credits()
         {
             using (StreamReader source = new StreamReader(@"Textures/Credits.txt"))
@@ -157,18 +224,18 @@ namespace Pong.UI
         /// <summary>
         /// TODO: make a working instance of a outer border
         /// </summary>
-        public static void Borders()
-        {
-            Utility.SetField();
-            int[,] matrixField = new int[30,80];
-            int i = 0;
-            int j = 0;
-            while (0<i && i<= 80)
-            {
-                Console.WriteLine("{0}",new string('-',matrixField[0,i]));
-                Console.WriteLine("{0}",new string('-',matrixField[30,i]));
-                i++;
-            }
-        }
+        //public static void Borders()
+        //{
+        //    Utility.SetField();
+        //    int[,] matrixField = new int[30,80];
+        //    int i = 0;
+        //    int j = 0;
+        //    while (0<i && i<= 80)
+        //    {
+        //        Console.WriteLine("{0}",new string('-',matrixField[0,i]));
+        //        Console.WriteLine("{0}",new string('-',matrixField[30,i]));
+        //        i++;
+        //    }
+        //}
     }
 }

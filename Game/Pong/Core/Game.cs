@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Net.Mime;
+using System.Threading;
 using Pong.Models.Abstracts;
 using Pong.Models.Game.Models;
 using Pong.UI;
@@ -27,7 +28,6 @@ namespace Pong.Core
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawBall(gameBall);
                 Draw.DrawLifes(playerOne.Lifes);
-                //Draw.Borders();
 
                 Direction pressedKey = InputHandler.PressedKey();
                 switch (pressedKey)
@@ -105,9 +105,44 @@ namespace Pong.Core
             Draw.GameOver(winner);
         }
 
+        public static void GameSettings()
+        {
+            Utility.SetField();
+
+            Console.BackgroundColor = Utility.bgc;
+            Console.Clear();
+            while (true)
+            {
+                Draw.StartUpSettings();
+            }
+        }
+
+        public static int Speed()
+        {
+            int speed = 100;
+            switch (Draw.GameSpeed())
+            {
+                case 1:
+                    speed = 100;
+                    break;
+                case 2:
+                    speed = 80;
+                    break;
+                case 3:
+                    speed = 60;
+                    break;
+                case 4:
+                    speed = 40;
+                    break;
+                case 5:
+                    speed = 20;
+                    break;
+            }
+            return speed;
+        }
+
         public static void Main()
         {
-
             while (true)
             {
 
@@ -123,10 +158,15 @@ namespace Pong.Core
                 {
                     Mutiplayer();
                 }
+                if (option == MenuOption.Settings)
+                {
+                    GameSettings();
+                }
                 if (option == MenuOption.Exit)
                 {
                     Environment.Exit(0);
                 }
+
                 Sounds.GameOver();
 
             }
