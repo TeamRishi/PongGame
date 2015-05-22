@@ -148,9 +148,26 @@ namespace Pong.UI
                 string line = source.ReadLine();
                 while (line != null)
                 {
+                    Console.SetCursorPosition(Utility.PlaygoundWidth-20,Utility.PlaygoundHeight-10);
                     Console.WriteLine(line);
                     line = source.ReadLine();
                 }
+            }
+        }
+        /// <summary>
+        /// TODO: make a working instance of a outer border
+        /// </summary>
+        public static void Borders()
+        {
+            Utility.SetField();
+            int[,] matrixField = new int[30,80];
+            int i = 0;
+            int j = 0;
+            while (0<i && i<= 80)
+            {
+                Console.WriteLine("{0}",new string('-',matrixField[0,i]));
+                Console.WriteLine("{0}",new string('-',matrixField[30,i]));
+                i++;
             }
         }
     }

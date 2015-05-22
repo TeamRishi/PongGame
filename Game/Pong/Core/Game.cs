@@ -27,6 +27,7 @@ namespace Pong.Core
                 Draw.DrawPaddle(leftPaddle);
                 Draw.DrawBall(gameBall);
                 Draw.DrawLifes(playerOne.Lifes);
+                //Draw.Borders();
 
                 Direction pressedKey = InputHandler.PressedKey();
                 switch (pressedKey)

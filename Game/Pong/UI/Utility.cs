@@ -41,7 +41,7 @@ namespace Pong.UI
             Console.ForegroundColor = ConsoleColor.Black;
             // TODO: Optimize speed by changing the value of the sleep command
             // and fix problem with lag before beep (beep found in Draw.cs at life method).
-            Thread.Sleep(60);
+            Thread.Sleep(40);
         }
 
         public static Player GetWinner(Player one, Player two)
