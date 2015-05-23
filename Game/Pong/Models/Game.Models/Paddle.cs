@@ -1,5 +1,4 @@
-﻿using System;
-using Pong.Models.Abstracts;
+﻿using Pong.Models.Abstracts;
 using Pong.Models.Contracts;
 using Pong.UI;
 

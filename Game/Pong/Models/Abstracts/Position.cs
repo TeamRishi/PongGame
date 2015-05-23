@@ -1,7 +1,4 @@
-﻿using System;
-using Pong.UI;
-
-namespace Pong.Models.Abstracts
+﻿namespace Pong.Models.Abstracts
 {
     /// <summary>
     /// Abstract class holding all objects X and Y.

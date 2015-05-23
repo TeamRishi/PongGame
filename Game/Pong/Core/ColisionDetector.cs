@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Pong.Models.Game.Models;
+﻿using Pong.Models.Game.Models;
 using Pong.UI;
 
 namespace Pong.Core
@@ -23,30 +17,17 @@ namespace Pong.Core
                 ball.Y >= paddle.Y &&
                 ball.Y <= paddle.Y + Utility.PaddleHeight)
             {
-                Random rnd = new Random();
-
-                switch (rnd.Next(0, 5))
-                {
-                        case 0:
-                        Utility.bgc = ConsoleColor.DarkRed;
-                        break;
-                    case 1:
-                        Utility.bgc = ConsoleColor.DarkCyan;
-                        break;
-                    case 2:
-                        Utility.bgc = ConsoleColor.Red;
-                        break;
-                    case 3:
-                        Utility.bgc = ConsoleColor.Cyan;
-                        break;
-                    case 4:
-                        Utility.bgc = ConsoleColor.DarkMagenta;
-                        break;
-                }
                 ball.Collision();
            }
         }
 
+        /// <summary>
+        /// Deducts life on collision event.
+        /// </summary>
+        /// <param name="lifes">current lifes</param>
+        /// <param name="ball">ball object</param>
+        /// <param name="paddle">paddle object</param>
+        /// <returns>int remaining lifes</returns>
         public static int CheckLifeLoss(int lifes, Ball ball, Paddle paddle)
         {
             if (ball.X == paddle.LifeZone)

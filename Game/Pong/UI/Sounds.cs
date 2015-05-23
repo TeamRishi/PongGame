@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Pong.UI
 {
@@ -18,7 +14,7 @@ namespace Pong.UI
         /// </summary>
         public static void Background()
         {
-            using (SoundPlayer background = new SoundPlayer(@"Sounds\background.wav"))
+            using (SoundPlayer background = new SoundPlayer(@"..\..\Resources\Sounds\background.wav"))
             {
                 background.PlayLooping();
             }
@@ -29,7 +25,7 @@ namespace Pong.UI
         /// </summary>
         public static void GameOver()
         {
-            using (SoundPlayer gameOver = new SoundPlayer(@"Sounds\gameover.wav"))
+            using (SoundPlayer gameOver = new SoundPlayer(@"..\..\Resources\Sounds\gameover.wav"))
             {
                 gameOver.PlaySync();
             }
@@ -42,11 +38,10 @@ namespace Pong.UI
         }
 
         // TODO: menu music.
-        /*  using (SoundPlayer menu = new SoundPlayer(@"Sounds\....wav"))
+        /*  using (SoundPlayer menu = new SoundPlayer(@"..\..\Resources\Sounds\....wav"))
             {
                 menu.Play();
             }
-            break;
          */
     }
 }
